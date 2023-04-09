@@ -1,5 +1,3 @@
-#!/bin/bash
-
 score() {
 sum=0
 tens=0
@@ -13,7 +11,7 @@ echo ""
 echo "┌──────────────┐"
 for (( i=0; i<${#1}; i++ )); do
 c=${1:$i:1}
-if [[ $c =~ ^[0-9]+$ ]]; then
+if expr "$c" : '[0-9]*$' > /dev/null; then
 if [ $cnt -eq 15 ]; then
 printf " 10-meter | %2d\n" $sum
 (( thingy10 += sum ))
@@ -35,13 +33,3 @@ done
 (( thingy15 = sum - thingy10 ))
 printf " 15-meter | %2d\n Total | %2d\n Tens | %2d\n└──────────────┘\n" $thingy15 $sum $tens
 }
-
-if [ $# -eq 0 ]; then
-read -p "Enter points in one string, 10 being any non-number: " input
-score $input
-elif [ $# -eq 1 ]; then
-input=$1
-score $input
-else
-echo "Is you dumb?"
-fi
