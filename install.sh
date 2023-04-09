@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 apk add git
 apk add bash
 git clone https://github.com/iliketwertles/archery-score.git
